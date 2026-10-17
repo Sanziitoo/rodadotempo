@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Roda do Tempo</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        alabaster: {
+                            50: '#fdfbf7',
+                            100: '#f4f1ea',
+                            200: '#e8e4da',
+                            900: '#2c2825'
+                        }
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Three.js & Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Folha de Estilos Externa -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="w-screen h-screen m-0 p-0 overflow-hidden">
+
+    <!-- Canvas 3D (Portal Mágico Inicial & Roda do Tempo) -->
+    <div id="canvas-container"></div>
+
+    <!-- Fade Overlay (Inicia invisível, fica 100% opaco no meio da transição) -->
+    <div id="transition-fade" class="fixed inset-0 bg-[#ffffff] z-40 pointer-events-none opacity-0"></div>
+
+    <!-- Modal do Painel Narrativo -->
+    <div id="story-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-amber-950/15 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-500">
+        <div class="glass-modal w-full max-w-2xl rounded-3xl p-6 md:p-10 relative transform scale-95 transition-all duration-500 max-h-[85vh] flex flex-col">
+            <button id="close-modal" class="interactive absolute top-6 right-6 text-amber-900/60 hover:text-amber-800 transition-colors p-2 rounded-full hover:bg-amber-200/40">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <div id="modal-numeral" class="font-cinzel text-amber-700 font-bold text-sm tracking-widest mb-1">
+                FRAGMENTO I
+            </div>
+
+            <h2 id="modal-title" class="font-cinzel text-2xl md:text-3xl font-bold text-amber-950 mb-4">
+                O Que Surgiu do Nada
+            </h2>
+
+            <div class="w-16 h-0.5 bg-amber-500/50 mb-6 rounded-full"></div>
+
+            <div id="modal-text" class="overflow-y-auto pr-3 text-alabaster-900/90 text-base md:text-lg font-light leading-relaxed space-y-4 flex-1">
+                <!-- Texto inserido dinamicamente via JS -->
+            </div>
+
+            <div class="pt-6 mt-4 border-t border-amber-300/40 flex justify-between items-center">
+                <span class="text-xs font-cinzel text-amber-800/60">A Roda do Tempo</span>
+                <button id="next-btn" class="interactive px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-cinzel font-bold tracking-wider transition-all shadow-md">
+                    Próximo Fragmento →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Externo -->
+    <script src="js/script.js"></script>
+</body>
+</html>
